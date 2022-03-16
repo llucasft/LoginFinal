@@ -22,12 +22,7 @@ def register():
 
 def verifier(user):
     registered = False
-    cursor = mods.connector()
-    string_sql = """
-            SELECT * FROM usuarios;
-        """
-    cursor.execute(string_sql)
-    lines = cursor.fetchall()
+    lines = mods.mod_verifier()
 
     for line in lines:
 

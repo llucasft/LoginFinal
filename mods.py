@@ -15,6 +15,16 @@ def connector():
     return cursor
 
 
+def mod_verifier():
+    cursor = connector()
+    string_sql = """
+        SELECT * FROM usuarios;
+    """
+    cursor.execute(string_sql)
+    lines = cursor.fetchall()
+    return lines
+
+
 def command(a, b, c):
     cursor = connector()
 
