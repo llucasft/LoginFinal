@@ -1,22 +1,7 @@
-import pyodbc
-
-
-def connector():
-    data_conn = (
-        "Driver={SQL Server};"
-        "Server=DESKTOP-G90E8IG\SQLSERVER;"
-        "Database=all_data;"
-        "Trusted_Connection=Yes"
-    )
-
-    conn = pyodbc.connect(data_conn)
-
-    cursor = conn.cursor()
-    return cursor
+import mods
 
 
 def register():
-    cursor = connector()
     usuario = dict()
     usuario['nome'] = input('Digite seu nome: ')
     usuario['nick'] = input('Digite seu nick: ')
@@ -28,17 +13,16 @@ def register():
         return
 
     usuario['senha'] = input('Digite sua senha: ')
+    
+    mods.command(usuario["nome"], usuario["nick"], usuario["senha"])
 
-    command = f"""INSERT INTO usuarios(nome, nick, senha)
-    VALUES ('{usuario["nome"]}', '{usuario["nick"]}', '{usuario["senha"]}')"""
+    print(f'Usuário(a) {usuario["nick"]} cadastrado com sucesso. ')
 
-    cursor.execute(command)
-    cursor.commit()
 
 
 def verifier(user):
     registered = False
-    cursor = connector()
+    cursor = mods.connector()
     string_sql = """
             SELECT * FROM usuarios;
         """
@@ -55,7 +39,7 @@ def verifier(user):
 
 
 def login():
-    cursor = connector()
+    cursor = mods.connector()
 
     string_sql = """
         SELECT * FROM usuarios;
