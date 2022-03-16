@@ -34,14 +34,7 @@ def verifier(user):
 
 
 def login():
-    cursor = mods.connector()
-
-    string_sql = """
-        SELECT * FROM usuarios;
-    """
-    cursor.execute(string_sql)
-    lines = cursor.fetchall()
-
+    lines = mods.mod_verifier()
     logged = {}
     online = False
     nick = input('Digite seu nick: ')
