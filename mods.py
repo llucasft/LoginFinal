@@ -18,7 +18,8 @@ def connector():
 def mod_verifier():
     cursor = connector()
     string_sql = """
-        SELECT * FROM usuarios;
+        SELECT * FROM usuarios 
+        where exists ;
     """
     cursor.execute(string_sql)
     lines = cursor.fetchall()
