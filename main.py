@@ -1,4 +1,4 @@
-import mods
+import db
 
 
 def register():
@@ -6,7 +6,7 @@ def register():
     usuario['nome'] = input('Digite seu nome: ')
     usuario['nick'] = input('Digite seu nick: ')
 
-    registered = mods.mod_verifier(usuario['nick'])
+    registered = db.mod_verifier(usuario['nick'])
 
     if registered:
         print('Usuário já cadastrado. ')
@@ -14,7 +14,7 @@ def register():
 
     usuario['senha'] = input('Digite sua senha: ')
     
-    mods.command(usuario["nome"], usuario["nick"], usuario["senha"])
+    db.command(usuario["nome"], usuario["nick"], usuario["senha"])
 
     print(f'Usuário(a) {usuario["nick"]} cadastrado com sucesso. ')
 
@@ -22,7 +22,7 @@ def register():
 def login():
     current_user = ()
     nick = input('Digite seu nick: ')
-    current_user = mods.mod_verifier(nick)
+    current_user = db.mod_verifier(nick)
     if current_user:
         senha = input('Digite sua senha: ')
         if senha == current_user[2]:
