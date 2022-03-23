@@ -15,20 +15,15 @@ def connector():
     return cursor
 
 
-def consult():
+def mod_verifier(nick):
     cursor = connector()
-    search = 
-
-
-def mod_verifier():
-    cursor = connector()
-    string_sql = """
+    string_sql = f"""
         SELECT * FROM usuarios 
-        where nick = '{}' ;
+        where nick = '{nick}' ;
     """
     cursor.execute(string_sql)
-    lines = cursor.fetchall()
-    return lines
+    row = cursor.fetchone()
+    return row
 
 
 def command(a, b, c):

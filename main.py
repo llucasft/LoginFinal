@@ -6,7 +6,7 @@ def register():
     usuario['nome'] = input('Digite seu nome: ')
     usuario['nick'] = input('Digite seu nick: ')
 
-    registered = verifier(usuario['nick'])
+    registered = mods.mod_verifier(usuario['nick'])
 
     if registered:
         print('Usuário já cadastrado. ')
@@ -19,46 +19,20 @@ def register():
     print(f'Usuário(a) {usuario["nick"]} cadastrado com sucesso. ')
 
 
-
-def verifier(user):
-    registered = False
-    lines = mods.mod_verifier()
-
-    for line in lines:
-
-        if user == line[1]:
-            registered = True
-            break
-
-    return registered
-
-
 def login():
-    lines = mods.mod_verifier()
-    logged = {}
-    online = False
+    current_user = ()
     nick = input('Digite seu nick: ')
-
-    for line in lines:
-
-        if nick == line[1]:
-            logged['nome'] = line[0]
-            logged['nick'] = line[1]
-            logged['senha'] = line[2]
-            online = True
-            break
-
-    if not online:
+    current_user = mods.mod_verifier(nick)
+    if current_user:
+        senha = input('Digite sua senha: ')
+        if senha == current_user[2]:
+            print(f'Bem vindo(a) {current_user[0]}')
+        else:
+            print('Usuário ou senha incorreto. ')
+            return
+    else:
         print('Usuário não cadastrado. ')
         return
-
-    senha = input('Digite sua senha: ')
-
-    if senha != logged['senha']:
-        print('Usuário ou senha incorreto. ')
-        return
-
-    print(f'Bem vindo(a) {logged["nome"]}')
 
 
 def main():
