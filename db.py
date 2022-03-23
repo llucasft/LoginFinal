@@ -26,7 +26,7 @@ def mod_verifier(nick):
     return row
 
 
-def command(a, b, c):
+def insert(a, b, c):
     cursor = connector()
 
     add_user = f"""INSERT INTO usuarios(nome, nick, senha)

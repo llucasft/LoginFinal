@@ -14,7 +14,7 @@ def register():
 
     usuario['senha'] = input('Digite sua senha: ')
     
-    db.command(usuario["nome"], usuario["nick"], usuario["senha"])
+    db.insert(usuario["nome"], usuario["nick"], usuario["senha"])
 
     print(f'Usuário(a) {usuario["nick"]} cadastrado com sucesso. ')
 
