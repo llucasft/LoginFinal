@@ -15,11 +15,16 @@ def connector():
     return cursor
 
 
+def consult():
+    cursor = connector()
+    search = 
+
+
 def mod_verifier():
     cursor = connector()
     string_sql = """
         SELECT * FROM usuarios 
-        where exists ;
+        where nick = '{}' ;
     """
     cursor.execute(string_sql)
     lines = cursor.fetchall()
