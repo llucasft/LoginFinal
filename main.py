@@ -29,10 +29,8 @@ def login():
             print(f'Bem vindo(a) {current_user[0]}')
         else:
             print('Usuário ou senha incorreto. ')
-            return
     else:
         print('Usuário não cadastrado. ')
-        return
 
 
 def main():
