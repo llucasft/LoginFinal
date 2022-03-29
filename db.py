@@ -14,8 +14,8 @@ conn.commit()
 
 def mod_verifier(nick):
     string_sql = f"""
-        SELECT * FROM usuarios 
-        where nick = '{nick}' ;
+        select exists
+        (select * from usuarios where nick = '{nick}')' ;
     """
 
     cursor.execute(string_sql)

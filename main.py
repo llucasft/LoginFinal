@@ -20,13 +20,13 @@ def register():
 
 
 def login():
-    current_user = ()
+    exist_user = ()
     nick = input('Digite seu nick: ')
     current_user = db.mod_verifier(nick)
     if current_user:
         senha = input('Digite sua senha: ')
-        if senha == current_user[2]:
-            print(f'Bem vindo(a) {current_user[0]}')
+        if senha == exist_user[2]:
+            print(f'Bem vindo(a) {exist_user[0]}')
         else:
             print('Usuário ou senha incorreto. ')
     else:
