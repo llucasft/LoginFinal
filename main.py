@@ -1,3 +1,4 @@
+from multiprocessing.dummy import current_process
 import db
 
 
@@ -6,7 +7,7 @@ def register():
     usuario['nome'] = input('Digite seu nome: ')
     usuario['nick'] = input('Digite seu nick: ')
 
-    registered = db.mod_verifier(usuario['nick'])
+    registered = db.get_user(usuario['nick'])
 
     if registered:
         print('Usuário já cadastrado. ')
@@ -20,17 +21,20 @@ def register():
 
 
 def login():
-    exist_user = ()
+    exist_user = False
     nick = input('Digite seu nick: ')
-    current_user = db.mod_verifier(nick)
-    if current_user:
-        senha = input('Digite sua senha: ')
-        if senha == exist_user[2]:
-            print(f'Bem vindo(a) {exist_user[0]}')
-        else:
-            print('Usuário ou senha incorreto. ')
-    else:
+    exist_user = db.get_user(nick)
+
+    if not exist_user:
         print('Usuário não cadastrado. ')
+        return
+    
+    senha = input('Digite sua senha: ')
+     
+    if senha == exist_user[2]:
+        print(f'Bem vindo(a) {exist_user[0]}')
+    else:
+        print('Usuário ou senha incorreto. ')
 
 
 def main():
@@ -47,6 +51,7 @@ def main():
         main()
 
     else:
+        db.close_conn()
         print("Saindo!")
 
 
